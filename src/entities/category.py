@@ -6,7 +6,7 @@ import uuid
 class Category:
     name: str
     budget_limit: float = 0.0
-    id: str = field(default_factory=lambda: str(uuid.uuid4))
+    id: str = field(default_factory=lambda: str(uuid.uuid4()))
 
     def __post_init__(self):
         if not self.name or self.name.strip() == "":
