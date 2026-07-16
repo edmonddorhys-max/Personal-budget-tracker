@@ -9,7 +9,7 @@ class BudgetController:
     def __init__(self, service: BudgetService):
         self.service = service
 
-    #Comptes
+    # Comptes
 
     def creer_compte(self, name: str, balance: float = 0.0) -> dict:
         account = self.service.create_account(name, balance)
@@ -58,7 +58,7 @@ class BudgetController:
             for t in transactions
         ]
 
-    # Categories 
+    # Categories
 
     def creer_categorie(self, name: str, budget_limit: float = 0.0) -> dict:
         cat = self.service.create_category(name, budget_limit)
