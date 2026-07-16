@@ -1,11 +1,11 @@
-"""Cas d'usage liés aux transactions (revenus et dépenses)."""
+
 
 from src.entities.transaction import Transaction, TransactionType
 from src.use_cases.interfaces.account_repo import AccountRepo
 
 
 class TransactionUseCases:
-    """Gère l'ajout, la suppression et la consultation des transactions."""
+
 
     def __init__(self, account_repo: AccountRepo):
         self.account_repo = account_repo

@@ -1,11 +1,11 @@
-"""Cas d'usage liés aux catégories."""
+
 
 from src.entities.category import Category
 from src.use_cases.interfaces.category_repo import CategoryRepo
 
 
 class CategoryUseCases:
-    """Gère la création et la consultation des catégories."""
+    
 
     def __init__(self, category_repo: CategoryRepo):
         self.category_repo = category_repo

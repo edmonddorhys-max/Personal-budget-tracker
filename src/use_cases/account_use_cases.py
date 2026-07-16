@@ -1,11 +1,10 @@
-"""Cas d'usage liés aux comptes."""
+
 
 from src.entities.account import Account
 from src.use_cases.interfaces.account_repo import AccountRepo
 
 
 class AccountUseCases:
-    """Gère la création et la consultation des comptes."""
 
     def __init__(self, account_repo: AccountRepo):
         self.account_repo = account_repo
