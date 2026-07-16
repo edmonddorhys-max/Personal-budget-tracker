@@ -2,13 +2,34 @@
 
 import pytest
 from src.frameworks.persistence.memory_repo import MemoryAccountRepo, MemoryCategoryRepo
-from src.use_cases.budget_service import BudgetService
+from src.use_cases.account_use_cases import AccountUseCases
+from src.use_cases.transaction_use_cases import TransactionUseCases
+from src.use_cases.category_use_cases import CategoryUseCases
+
+
+class FakeService:
+    """Regroupe les 3 use cases pour simplifier les tests."""
+
+    def __init__(self, account_repo, category_repo):
+        self._accounts = AccountUseCases(account_repo)
+        self._transactions = TransactionUseCases(account_repo)
+        self._categories = CategoryUseCases(category_repo)
+
+    def create_account(self, *a, **kw): return self._accounts.create_account(*a, **kw)
+    def get_all_accounts(self): return self._accounts.get_all_accounts()
+    def get_balance(self, *a, **kw): return self._accounts.get_balance(*a, **kw)
+    def add_income(self, *a, **kw): return self._transactions.add_income(*a, **kw)
+    def add_expense(self, *a, **kw): return self._transactions.add_expense(*a, **kw)
+    def delete_transaction(self, *a, **kw): return self._transactions.delete_transaction(*a, **kw)
+    def get_transactions(self, *a, **kw): return self._transactions.get_transactions(*a, **kw)
+    def create_category(self, *a, **kw): return self._categories.create_category(*a, **kw)
+    def get_all_categories(self): return self._categories.get_all_categories()
 
 
 @pytest.fixture
 def service():
-    """Cree un service avec des depots en memoire (rapide, pas de fichiers)."""
-    return BudgetService(
+    """Cree les use cases avec des depots en memoire (rapide, pas de fichiers)."""
+    return FakeService(
         account_repo=MemoryAccountRepo(),
         category_repo=MemoryCategoryRepo(),
     )
