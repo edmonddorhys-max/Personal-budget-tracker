@@ -9,8 +9,7 @@ class Category:
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
 
     def __post_init__(self):
-        if not self.name or self.name.strip() == "":
-            raise ValueError("the name cannot be empty")
-        
-        if self.budget_limit <0:
-            raise ValueError("The budget cannot contain a negative value.")
+        if not self.name.strip():
+            raise ValueError("Le nom ne peut pas etre vide.")
+        if self.budget_limit < 0:
+            raise ValueError("Le budget ne peut pas etre negatif.")
